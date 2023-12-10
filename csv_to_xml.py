@@ -1,7 +1,11 @@
-#  Your csv format should have these columns
-#       filename,width,height,class,xmin,ymin,xmax,ymax
-#  Command : py csv_to_xml.py -i tractor\tractor.csv -o tractor\xmls
-
+#!/usr/bin/env python
+#-*-coding:utf-8 -*-"
+'''
+@ Author: Onur Tosun
+@ Create Time : 2023-11-29
+@ Description : This script converts a CSV file
+with bounding box annotations into the YOLO TXT format.
+'''
 
 import os
 import csv
@@ -9,13 +13,11 @@ import argparse
 from collections import defaultdict
 from lxml.etree import Element, SubElement, ElementTree
 
-
 def write_xml(folder, filename, bbox_list):
 
     root = Element('annotation')
     SubElement(root, 'folder').text = folder
     SubElement(root, 'filename').text = filename
-    # SubElement(root, 'path').text = './images' +  filename
 
     source = SubElement(root, 'source')
     SubElement(source, 'database').text = 'coco'

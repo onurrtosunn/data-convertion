@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+#-*-coding:utf-8 -*-"
+'''
+@ Author: Onur Tosun
+@ Create Time : 2023-11-29
+@ Description : This script converts a CSV file
+with bounding box annotations into the YOLO TXT format.
+'''
+
 import os
 import argparse
 from pathlib import Path
