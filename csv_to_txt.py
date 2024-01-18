@@ -41,23 +41,24 @@ def csv_to_txt(csv_path ,out_path):
         labels[label]=i
     print(labels)
     
-    for name, group in df.groupby('filename'):    
-        txt_filename = os.path.join(out_path, name.endswith("jpg") + '.txt')
-        with open(txt_filename, "w") as f:
-            for row_index, row in group.iterrows():
-                xmin = row['xmin']
-                ymin = row['ymin']
-                xmax = row['xmax']
-                ymax = row['ymax']
-                width = row['width']
-                height = row['height']
-                label = row['class']
+    for name, group in df.groupby('filename'):  
+        if name.endswith("jpg"):  
+            txt_filename = os.path.join(out_path, name + '.txt')
+            with open(txt_filename, "w") as f:
+                for row_index, row in group.iterrows():
+                    xmin = row['xmin']
+                    ymin = row['ymin']
+                    xmax = row['xmax']
+                    ymax = row['ymax']
+                    width = row['width']
+                    height = row['height']
+                    label = row['class']
 
-                label_str = str(labels[label])
-                values = (float(xmin), float(xmax), float(ymin), float(ymax))
+                    label_str = str(labels[label])
+                    values = (float(xmin), float(xmax), float(ymin), float(ymax))
 
-                bounding_box_values = convert_coordinates((width,height), values)
-                f.write(label_str + " " + " ".join([("%.6f" % i) for i in bounding_box_values]) + '\n')
+                    bounding_box_values = convert_coordinates((width,height), values)
+                    f.write(label_str + " " + " ".join([("%.6f" % i) for i in bounding_box_values]) + '\n')
 
 if __name__ == '__main__':
 
