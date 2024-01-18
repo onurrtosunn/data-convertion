@@ -43,7 +43,7 @@ def csv_to_txt(csv_path ,out_path):
     
     for name, group in df.groupby('filename'):  
         if name.endswith("jpg"):  
-            txt_filename = os.path.join(out_path, name + '.txt')
+            txt_filename = os.path.join(out_path, name[:-4] + '.txt')
             with open(txt_filename, "w") as f:
                 for row_index, row in group.iterrows():
                     xmin = row['xmin']
