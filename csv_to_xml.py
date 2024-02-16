@@ -65,7 +65,7 @@ def main(input ,output):
     for filename, entries in entries_by_filename.items():
         write_xml( output , filename, entries)    
 
-    print(" Successfully Converted annotations from CSV to XML format .🎉🥳")    
+    print(" Successfully Converted annotations from CSV to XML format")    
 
 if __name__ == "__main__" :
     # Argument Parser
